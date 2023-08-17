@@ -5,14 +5,23 @@ def create_app(): # cria uma função para definir o aplicativo
     
     @app.route("/") # cria uma rota
     def index(): # função que gerencia rota
-        nome = "Sophia657"
+
+        nome = "Sofia Lorem"
+
         return render_template("index.html", nome=nome) # combina o python com html
 
     @app.route("/alunos")
     def alunos():
         import json
         from database.dados import alunos
-        return render_template("lista.html", alunos=alunos )
+
+        # Função lambda cria funções de 1 linha só
+        # media = lambda t,p1,p2: t*.3+p1*.35+p2*.35
+        def media(t, p1, p2):
+            return t*.3+p1*.35+p2*.35
+        
+        return render_template("lista.html", alunos=alunos, media=media )
+
     @app.route("/login")
     def login():
         return "<H1>Login ainda não implementado</h1>"
