@@ -1,8 +1,32 @@
+{# extends 'layout.html' #}
+{# block content #}
+<h1>Lista de Alunos</h1>
 {% for k,v in alunos.items() %}
-
-<div>
-    <img src="{{ v['avatar'] }}" width="100" 
-    style="border-radius: 20px 20px 30px 20px;">
-</div>
-
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{ v['avatar'] }}" class="img-fluid rounded-start" alt="{{ v['avatar'] }}" tyle="border-radius: 20px 20px 20px 20px;">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ v['nome'] }}</h5>
+          <ul>Notas
+            <li><strong>Trabalho:</strong> ?, <strong>Prova 1:</strong> ?, <strong>Prova 2:</strong> ?</li>
+            <li><strong>Média:</strong> ?</li> <!-- use a função media -->
+          </ul>
+          <!-- se meida <3 -->
+          <p class="card-text bg-danger text-white">Reprovado</p>
+          <!-- se media entre 3 e 7 -->
+          <p class="card-text bg-warning text-white">Recuperação</p>
+          <!-- se não -->
+          <p class="card-text bg-success text-white">Aprovado</p>
+          <a class="btn btn-primary" href="" >Perfil</a> | 
+          <a class="btn btn-danger" href="" >Excluir</a>
+        
+        <p>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endfor %}
+{# endblock #}
