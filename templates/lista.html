@@ -1,5 +1,5 @@
-{# extends 'layout.html' #}
-{# block content #}
+{% extends 'layout.html' %}
+{% block content %}
 <h1>Lista de Alunos</h1>
 {% for k,v in alunos.items() %}
 <div class="card mb-3" style="max-width: 540px;">
@@ -29,4 +29,4 @@
     </div>
   </div>
 {% endfor %}
-{# endblock #}
+{% endblock %}
