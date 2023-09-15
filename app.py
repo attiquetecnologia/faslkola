@@ -3,8 +3,14 @@ from flask import Flask, redirect, render_template, request, session, url_for
 def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
     app.secret_key = "abax"
+
     @app.route("/") # cria uma rota
     def index(): # função que gerencia rota
+        
+        # Se usuário não está logado
+        if 'user' not in session:
+            return redirect(url_for('login'))
+        
         nome = "Rodrigo 123"
         return render_template("index.html", nome=nome) # combina o python com html
 
@@ -37,6 +43,15 @@ def create_app(): # cria uma função para definir o aplicativo
 
         return render_template("login.html", error=error)
     
+    @app.route("/logout")
+    def logout():
+        session.clear()
+        return redirect(url_for('login'))
+
+    # crie a rota do perfil aqui
+    # @app...
+    # def perfil()....
+
     return app # retorna o app criado
 
 if __name__ == "__main__": # 'função principal' do python
