@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+<body>
+<div style="display: flex; align-items: center; justify-content: center; flex-direction: column; height: 100%;">
+    <div style="background-color: #f1f1f1; padding: 50px; border-radius: 30px; margin: 20px;">
+        {% if error != None %}
+            <div style="background-color: #f8d7da; border: #f1aeb5 2px solid; text-align: center; padding: 8px 16px; display: flex; align-items: center; margin-bottom: 20px; border-radius: 8px;">
+                <p style="margin: 0;"> {{ error }} </p>
+            </div>
+        {% endif %}
+        <h3 style="text-align: center; font-weight: 600; margin-bottom: 15px;">Página de login</h3>
+        <form action="#" method="post">
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <label for="email" style="font: inherit; font-size: 16px;">Email</label>
+                <input required type="email" placeholder="Endereço de email" name="email" style="background-color: #f9f9f9; border: #e5e5e5; padding: 8px 10px;">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <label for="password" style="font: inherit; font-size: 16px;">Senha</label>
+                <input required type="password" placeholder="Insira sua senha" name="senha" style="background-color: #f9f9f9; border: #e5e5e5; padding: 8px 10px;">
+            </div>
+            <div style="display: flex; justify-content: center; margin-top: 16px;">
+                <input type="submit" value="Enviar" class="submit-form" data-wait="Um momento" style="border-radius: 12px; border: none; background-color: #f90; padding: 8px 20px; color: #fff;">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+{% endblock %}
