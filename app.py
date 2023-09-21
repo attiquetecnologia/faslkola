@@ -1,4 +1,4 @@
-from flask import Flask, render_template # importa bibliotecas
+from flask import Flask, render_template, request, session # importa bibliotecas
 
 def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
@@ -20,9 +20,17 @@ def create_app(): # cria uma função para definir o aplicativo
         
         return render_template("lista.html", alunos=alunos, media=media )
 
-    @app.route("/login")
+    @app.route("/login", methods=('POST' , 'GET'))
     def login():
-        return "<H1>Login ainda não implementado</h1>"
+        if request.form.get('POST'):
+           email = request.form.get('email')
+           senha = request.form.get('senha')
+                  
+           from database.dados import alunos
+           for  k,v in alunos.items():
+               if email == v.get('usuario') and senha == v.get('senha'):
+                   session['user'] =v
+        return render_template("login.html")
     
     return app # retorna o app criado
 
