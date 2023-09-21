@@ -1,8 +1,8 @@
-from flask import Flask, redirect, render_template, request, session, url_for # importa bibliotecas
+from flask import Flask, redirect, render_template, request, session, url_for
 
 def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
-    
+    app.secret_key = "abax"
     @app.route("/") # cria uma rota
     def index(): # função que gerencia rota
         nome = "Alexandre xandon 07"
@@ -23,7 +23,7 @@ def create_app(): # cria uma função para definir o aplicativo
     @app.route("/login", methods=('POST', 'GET'))
     def login():
         error = None
-        if request.form.get('POST'):
+        if request.method == 'POST':
             email = request.form.get('email')
             senha = request.form.get('senha')
 
@@ -33,7 +33,7 @@ def create_app(): # cria uma função para definir o aplicativo
                     session['user'] = v
                     return redirect(url_for('index'))
                 else:
-                    error = "Usuario ou senha invalido!"
+                    error = "Usuario ou senha inválidos!"
 
         return render_template("login.html", error=error)
     
