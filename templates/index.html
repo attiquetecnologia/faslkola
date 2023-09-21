@@ -1,7 +1,14 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+<<<<<<< HEAD
 <h1>Olá, {{ nome }} bem vindo ao Flaskola </h1>
+=======
+<h1> Olá, {{ nome }} bem vindo ao Flaskola! </h1>
+{% if 'user' in session %}
+<p>{{ session['user'] }}</p>
+{% endif %}
+>>>>>>> ed6fbf154cbbc39c08d5a78d78eb53ab11b59c35
 <p>Este é o seu primeiro aplicativo WEB</p>
 <a href="{{ url_for('login') }}"> Faça Login!</a>
 <a href="{{ url_for('alunos') }}"> Alunos!</a>
