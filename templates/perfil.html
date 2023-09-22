@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container">
+    <form>
+        <div class="mb-3">
+          <label for="exampleInputNome1" class="form-label">Nome</label>
+          <input type="Nome" class="form-control" id="exampleInputNome1" aria-describedby="nomeHelp">
+          <div id="nomeHelp" class="form-text">We'll never share your nome with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email</label>
+          <input type="Email" class="form-control" id="exampleInputEmail1">
+        </div>
+        <button type="Salvar" class="btn btn-primary">Salvar</button>
+      </form>
+</div>
+{% endblock %}
