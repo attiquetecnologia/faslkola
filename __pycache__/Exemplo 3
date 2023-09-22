@@ -1,0 +1,14 @@
+notas = []
+media = 0
+qtd = int(input("Deseja calcular a média de quantas notas?"))
+for i in range(qtd):
+    notas.append(float(input(f"Digite a f Nota{i+1}:" )))
+    media += notas[i]
+media = media / len(notas)
+print(f"A Média é: {media}")
+if media>= 7:
+    print("Aluno Aprovado!")
+elif media >=5 and media <7:
+    print("Aluno de Recuperação!")
+else:
+    print("Aluno Reprovado!")

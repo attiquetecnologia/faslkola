@@ -1,0 +1,14 @@
+num1 = input("Digite o primeiro numero: ")
+num2 = input("Digite o numero: ")
+res =0
+print("Digite a opção desejada!")
+print("1 - Somar")
+print("2 - Subtrair")
+opt = input("")
+if opt=="1":
+    res =  float(num1) + float(num2)
+elif opt=="2":
+    res =  float(num1) + float(num2)
+else:
+    print("Opção Inválida, tente novamente!")
+print("O resulado é: " + str(res))

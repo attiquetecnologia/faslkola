@@ -1,12 +1,13 @@
-from flask import Flask, render_template # importa bibliotecas
+from flask import Flask, redirect, render_template, request, session, url_for # importa bibliotecas
 
 def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
-    
+    app.secret_key = "abax"
+
     @app.route("/") # cria uma rota
     def index(): # função que gerencia rota
 
-        nome = "Rodrigo 123"
+        nome = "Brendha"
         return render_template("index.html", nome=nome) # combina o python com html
 
     @app.route("/alunos")
@@ -21,10 +22,34 @@ def create_app(): # cria uma função para definir o aplicativo
         
         return render_template("lista.html", alunos=alunos, media=media )
 
-    @app.route("/login")
+    @app.route("/login" , methods=('POST' , 'GET'))
     def login():
-        return "<H1>Login ainda não implementado</h1>"
-    
+        error = None
+        if request.method == 'POST':
+            email = request.form.get('email')
+            senha = request.form.get('senha')   
+
+            from database.dados import alunos
+            for k,v in alunos.items():
+                if email == v.get('usuario') and senha == v.get('senha'):
+                    session['user'] = v
+                    return redirect(url_for('index'))
+                else:
+                    error= "Usuario ou senha invalidos!"
+                
+        return render_template("login.html", error=error)
+
+    @app.route("/recuperar_senha", methods=('POST', 'GET'))
+    def recuperarsenha():
+        error = None
+        
+        email = request.form.get('email')
+            senha = request.form.get("senha")
+            nova_senha = request.form.get('nova_senha')
+            repita_senha = request.form.get('repita_senha')
+
+        return render_template("recuperarsenha.html", error=error)
+
     return app # retorna o app criado
 
 if __name__ == "__main__": # 'função principal' do python
