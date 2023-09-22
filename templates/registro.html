@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<html>
+<link href="bootstrap.min.css" rel="stylesheet">
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-md-10 mx-auto col-lg-5">
+        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+            <div class="text-center">
+                <img class="mb-4" src="static/imagens/logo.png"  alt="" width="72" height="57">
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="Usuario">
+                <label for="floatingInput">Nome</label>
+              </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Senha</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Confirmar Senha</label>
+          </div>
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Salvar
+            </label>
+          </div>
+          <a href="index.html" class="w-100 btn btn-lg btn-warning" type="submit" >Cadastre-se</a>
+          <hr class="my-4">
+          <p class="text-center"><small class="text-center">Bem Vindo</small></p>
+          <div>
+            <small class="text-center">
+              Ao clicar em Cadastre-se, você concorda com os termos de uso.</small>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+        
+</html>
+
+{% endblock %}
