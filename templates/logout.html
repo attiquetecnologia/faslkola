@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Logout</title>
+</head>
+<body>
+    <h1>Você está prestes a sair da sua conta.</h1>
+    <p>Tem certeza de que deseja sair?</p>
+    
+    <!-- Um botão que simula o logout -->
+    <form action="logout.php" method="post">
+        <input type="submit" value="Logout">
+    </form>
+</body>
+{% endblock %}
