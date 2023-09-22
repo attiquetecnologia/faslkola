@@ -1,6 +1,6 @@
 from flask.helpers import url_for
 alunos = {
-10: {"nome": "Batman", "t": 9.1, "p1": 8.5, "p2": 9, "avatar": url_for('static', filename="images/batman.jpg"), "usuario":"batman", "senha":"curinga"}
+10: {"nome": "Batman", "t": 9.1, "p1": 8.5, "p2": 9, "avatar": url_for('static', filename="images/batman.jpg"), "email":"batman", "senha":"curinga"}
 ,11: {"nome": "Robin", "t": 10, "p1": 9.5, "p2": 10, "avatar": url_for('static', filename="images/robin.jpg"), "usuario":"robin", "senha":"slade"}
 ,12: {"nome": "Volverine", "t": 6, "p1": 7, "p2": 8, "avatar": url_for('static', filename="images/volverine.png"), "usuario":"volverine", "senha":"xavier"}
 ,13: {"nome": "Gibak", "t": 8, "p1": 9.5, "p2": 10, "avatar": url_for('static', filename="images/gibak.jpg"), "usuario":"gibak", "senha":"bucky"}
