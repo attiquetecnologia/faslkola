@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, redirect, render_template, request, url_for
 
 bp = Blueprint("Aluno", __name__)
 
@@ -17,9 +17,17 @@ def lista():
 def add():
     return render_template("alunos/form.html")
 
-@bp.route("/alunos/<int:id>delete")
+@bp.route("/alunos/<int:id>/delete", methods=("GET", "POST"))
 def delete(id):
-    return render_template("alunos/delete.html")
+    from database.dados import alunos 
+
+    aluno = alunos.get(id)
+
+    if request.method == "POST" and request.form.get("apagar") == "sim":
+        del alunos[id] # deleta o aluno do dicionário
+        return redirect(url_for("Aluno.lista"))
+
+    return render_template("alunos/delete.html", id=id, aluno=aluno)
 
 @bp.route("/alunos/<int:id>/edit")
 def edit(id):
