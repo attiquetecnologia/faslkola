@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, app, redirect, render_template, request, session, url_for
 
 def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
@@ -37,6 +37,35 @@ def create_app(): # cria uma função para definir o aplicativo
 
         return render_template("login.html", error=error)
     
+    @app.route("/logout")
+    def logout():
+        return redirect(url_for("login"))
+    
+    @app.route("/recsenha", methods=('POST', 'GET'))
+    def recsenha():
+        error = None
+        return render_template("recsenha.html", error=error)
+    
+    @app.route("/perfil")
+    def perfil():
+
+        if 'user' not in session and False:
+            # se não tiver lgoado devolve para login
+            return redirect(url_for('login'))
+
+        # 1-Pegar dados do banco
+        # for k,v ... in alunos... session['user']['email']==email
+
+        if request.method == 'POST':
+            # lógica salvar
+            nome = request.form.get("nome")
+            email = request.form.get("email")
+
+            from database.dados import alunos
+            for k,v,x in alunos.items():
+                pass
+    
+        return render_template("perfil.html") #, usuario=usuario
     return app # retorna o app criado
 
 if __name__ == "__main__": # 'função principal' do python
