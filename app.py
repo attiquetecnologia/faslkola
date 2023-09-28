@@ -54,13 +54,15 @@ def create_app():
                 "senha": senha,
                 "nome": nome,
             }
+            from database.dados import alunos
+            
+            alunos[email]=user_info 
 
-        alunos.append(user_info)  # Here's where the error occurs
+            return redirect(url_for("index"))
 
-        return redirect(url_for("index"))
+        return render_template("registro.html")
 
-    return render_template("registro.html")
-
+    return app
 
 if __name__ == "__main__":
     create_app().run(debug=True)
