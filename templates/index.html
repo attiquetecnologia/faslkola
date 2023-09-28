@@ -1,11 +1,61 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1> Olá, {{ nome }} bem vindo ao Flaskola! </h1>
-{% if 'user' in session %}
-<p>{{ session['user'] }}</p>
-{% endif %}
-<p>Este é o seu primeiro aplicativo WEB</p>
-<a href="{{ url_for('login') }}"> Faça Login!</a>
-<a href="{{ url_for('alunos') }}"> Alunos!</a>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        background-color: #f2f2f2;
+    }
+    .shape{
+        width: 70%;
+        background-color: #fff;
+        padding: 50px;
+        border-left: 5px solid #f90;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        margin: 50px auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    h1{
+        font-size: 30px;
+    }
+    h3{
+        font-size: 25px;
+        margin-top: 25px;
+    }
+    .sec1, .sec2{
+        width: 45%;
+    }
+    .titulo-notas{
+        text-align: center;
+    }
+</style>
+<body>
+    {% if 'user' in session %}
+    <div class="shape">
+        <div class="sec1">
+            <h1>Olá, {{ nome }} bem vindo ao Flaskola!</h1>
+            <h3>Perfil</h3>
+        </div>
+        <div class="sec2">
+            <h1 class="titulo-notas">Notas</h1>
+            <ul>
+                <li><strong>Trabalho: </strong>{{ session['user']['t'] }}</li>
+                <li><strong>Prova 1: </strong>{{ session['user']['p1'] }}</li>
+                <li><strong>Prova 2: </strong>{{ session['user']['p2'] }}</li>
+                <li><strong>Média: </strong></li>
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+</body>
 {% endblock %}
+<!-- {% if 'user' in session %}
+<p>{{ session['user'] }}</p>
+{% endif %} -->

@@ -4,7 +4,7 @@ def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
     app.secret_key = "abax"
     @app.route("/") # cria uma rota
-    def index(): # função que gerencia rota
+    def index(): # função que gerenca rota
         nome = "Leandro"
         return render_template("index.html", nome=nome) # combina o python com html
 
@@ -18,7 +18,7 @@ def create_app(): # cria uma função para definir o aplicativo
         def media(t, p1, p2):
             return t*.3+p1*.35+p2*.35
         
-        return render_template("lista.html", alunos=alunos, media=media )
+        return render_template("lista.html", alunos=alunos, media=media)
 
     @app.route("/login", methods=('POST', 'GET'))
     def login():
@@ -31,7 +31,9 @@ def create_app(): # cria uma função para definir o aplicativo
             for k,v in alunos.items():
                 if email == v.get('usuario') and senha == v.get('senha'):
                     session['user'] = v
-                    return redirect(url_for('index'))
+                    def media1(t, p1, p2):
+                        return t*.3+p1*.35+p2*.35
+                    return redirect(url_for('index', media1=media1))
                 else:
                     error = "Usuario ou senha inválidos!"
 

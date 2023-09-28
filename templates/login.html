@@ -1,22 +1,37 @@
 {% extends 'layout.html' %}
-
 {% block content %}
-<div class="container">
-    <form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+
+<body>
+  <style>
+    .submit-form:hover{
+      background-color: transparent;
+      border: 3px solid #f90;
+      color: #f90;
+      width: 60%;
+    }
+  </style>
+<div style="display: flex; align-items: center; justify-content: center; flex-direction: column; height: 100%; margin-top: 100px;">
+    <div style="background-color: #fff; padding: 50px; border-top: 5px solid #f90; margin: 20px; box-shadow: 0 0 12px rgba(0, 0, 0, .3); border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; width: 325px;">
+        {% if error != None %}
+            <div style="background-color: #f8d7da; border: #f1aeb5 2px solid; text-align: center; padding: 8px 16px; display: flex; align-items: center; margin-bottom: 20px; border-radius: 8px;">
+                <p style="margin: 0;"> {{ error }} </p>
+            </div>
+        {% endif %}
+        <h3 style="text-align: center; font-weight: 600; margin-bottom: 25px;">Página de login</h3>
+        <form action="#" method="post">
+            <div style="display: flex; flex-direction: column; gap: 15px; margin: 15px 0;">
+                <label for="email" style="font: inherit; font-size: 16px;">Email</label>
+                <input required type="email" placeholder="Endereço de email" name="email" style="background-color: #f3f3f3; border: #e5e5e5; padding: 8px 10px;">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 15px; margin: 15px 0;">
+                <label for="password" style="font: inherit; font-size: 16px;">Senha</label>
+                <input required type="password" placeholder="Insira sua senha" name="senha" style="background-color: #f3f3f3; border: #e5e5e5; padding: 8px 10px;">
+            </div>
+            <div style="display: flex; justify-content: center; margin-top: 16px;">
+                <input type="submit" value="Enviar" class="submit-form" data-wait="Um momento" style="border-radius: 12px; border: none; background-color: #f90; padding: 8px 20px; color: #fff; width: 50%; transition: .3s all;">
+            </div>
+        </form>
+    </div>
 </div>
+</body>
 {% endblock %}
