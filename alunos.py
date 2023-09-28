@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
 
 bp = Blueprint("Aluno", __name__)
+
 @bp.route("/alunos/lista")
 def lista (): 
       from database.dados import alunos

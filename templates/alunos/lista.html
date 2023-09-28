@@ -6,10 +6,17 @@
   <h1>Lista de Alunos</h1>
   <div class="row">
     {% for id, aluno in alunos.items () %}
-  <div class="col-md-3">
-
+    <div class="col-md-3">
+      <div class="d-flex">
+        <div class="flex-shrink-0">
+          <img src="{{ aluno['avatar'] }}" alt="{{ aluno ['nome'] }}" width="100"> 
+        </div>
+        <div class="flex-grow-1 ms-3">
+          This is some content from a media component.
+        </div>
+      </div>
     </div>
-    {% enfor %}
+    {% endfor %}
   </div><!--./row -->
 </div>
 {% endblock%}
