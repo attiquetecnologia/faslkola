@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container">
+<h1>Lista de Alunos</h1>
+<div class="row">
+    {% for id, aluno in alunos.items() %}
+        <div class="col-md-3" style="border: 1px solid; margin: 5px; padding: 5px;">
+            <div class="d-flex">
+                <div class="flex-shrink-0">
+                    <img src="{{ aluno['avatar'] }}" alt="{{ aluno['nome'] }}" width="100">
+                </div>
+                <div class="flex-grow-1 ms-3" syle="width: 100px;">
+                    <p><strong>Nome:</strong> {{ aluno['nome'] }}</p>
+                    <p><strong>Nome:</strong> {{ aluno['usuario'] }}</p>
+                    <hr>Notas
+                    <p>
+                        <strong>Prova 1:</strong> {{ aluno['p1'] }}
+                        <strong>Prova 2:</strong> {{ aluno['p2'] }}
+                        <strong>Trabalho:</strong> {{ aluno['t'] }}
+                    </p>
+                </div><!-- ./flex-grow-1 -->
+            </div>
+        </div>
+        
+    {% endfor %}
+</div><!-- ./row -->
+</div>
+{% endblock %}
+
