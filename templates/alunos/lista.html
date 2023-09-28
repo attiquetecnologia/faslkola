@@ -1,0 +1,15 @@
+
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container">
+  <h1>Lista de Alunos</h1>
+  <div class="row">
+    {% for id, aluno in alunos.items () %}
+  <div class="col-md-3">
+
+    </div>
+    {% enfor %}
+  </div><!--./row -->
+</div>
+{% endblock%}

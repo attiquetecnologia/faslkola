@@ -1,8 +1,28 @@
 
 {% extends 'layout.html' %}
 {% block content %}
-<h1>Lista de Alunos</h1>
+
+<div class="container">
+  <h1>Lista de Alunos</h1>
+  <div class="row">
+    {% for id, aluno in alunos.items () %}
+  <div class="col-md-3">
+    <div class="d-flex">
+      <div class="flex-shrink-0">
+        <img scr="..." alt="..."> 
+      </div>
+      <div class="flex-grow-1 ms-3">
+        This is some content from a media component.
+      </div>
+    </div>
+  </div>
+    {% enfor %}
+  </div><!--./row -->
+</div>
+{% endblock%}
+
 {% for k,v in alunos.items() %}
+      
 <div class="card mb-3" style="max-width: 540px;">
     <div class="row g-0">
       <div class="col-md-4">
