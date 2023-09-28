@@ -36,6 +36,8 @@ def create_app(): # cria uma função para definir o aplicativo
                     error = "Usuario ou senha inválidos!"
 
         return render_template("login.html", error=error)
+    from alunos import bp 
+    app.register_blueprint(bp)
     
     return app # retorna o app criado
 
