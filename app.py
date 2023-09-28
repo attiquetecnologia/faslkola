@@ -58,7 +58,10 @@ def create_app(): # cria uma função para definir o aplicativo
         if request.method=="POST":
             # lógica salvar
             nome = request.Forms.get("nome")
-        return render_template("perfil.html") 
+        return render_template("perfil.html")
+
+    from alunos import bp
+    app.register_blueprint(bp) 
       
     
     return app # retorna o app criado
