@@ -21,6 +21,10 @@
                 <strong> Prova 2: </strong> {{ aluno["p2"] }} |
                 <strong> Trabalho:</strong> {{ aluno['t'] }}
             </p>
+            <p><strong>Média:</strong> {{ media(aluno['t'], aluno['p1'], aluno['p2']) }}</p>
+            <hr>
+            <a class="btn btn-success" href="{{ url_for("Aluno.edit", id=id) }}">Editar</a> |
+            <a class="btn btn-danger" href="{{ url_for("Aluno.delete", id=id) }}">Delete</a>
         </div><!--./col -->
     {% endfor %}
     </div><!--./row -->
