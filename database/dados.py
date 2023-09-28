@@ -8,3 +8,4 @@ alunos = {
 ,15: {"nome": "zaza", "t": 4, "p1": 9.5, "p2": 7, "avatar": url_for('static', filename="images/zaza.jpg"), "usuario":"zaza@email.com", "senha":"cocorico"}
 ,15: {"nome": "saitama", "t": 3, "p1": 9.5, "p2": 7, "avatar": url_for('static', filename="images/saitama.jpg"), "usuario":"saitama@email.com", "senha":"saitama"}
 }
+# ,15: {"nome": "saitama", "t": 3, "p1": 9.5, "p2": 7, "avatar": url_for('static', filename="images/saitama.jpg"), "usuario":"saitama@email.com", "senha":"saitama"}
