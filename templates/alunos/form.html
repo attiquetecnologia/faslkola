@@ -10,6 +10,13 @@
 </style>
 
 <div class="container" style="display: flex; justify-content: center; align-items: center; margin: 80px auto;">
+    {% if erros | length>0 %}
+    <div class="alert alert-info">
+        {% for e in erros %}
+        <p>{{ e }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
     <form method="post" style="width: 400px; padding: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; background-color: #fff; box-shadow: 0 0 12px rgba(0, 0, 0, .2); border-top: 5px solid #f90;">
         <h1 style="text-align: center;">Cadastro de alunos</h1>
         <div style="display: flex; flex-direction: column; gap: 12px; margin: 12px 0;">
@@ -22,15 +29,15 @@
         </div>
         <div style="display: flex; flex-direction: column; gap: 12px; margin: 12px 0;">
             <label style="font: inherit; font-size: 16px;">Nota de trabalho</label>
-            <input class="form-control" required value="{{ aluno.get('t') if aluno else '' }}" type="number" placeholder="Nota de trabalho" name="t" style="background-color: #f3f3f3; border: #e5e5e5; padding: 8px 10px;">
+            <input class="form-control" required value="{{ aluno.get('t') if aluno else '' }}" type="number" step="0.1" max="10" min="0" placeholder="Nota de trabalho" name="t" style="background-color: #f3f3f3; border: #e5e5e5; padding: 8px 10px;">
         </div>
         <div style="display: flex; flex-direction: column; gap: 12px; margin: 12px 0;">
             <label style="font: inherit; font-size: 16px;">Prova 1</label>
-            <input class="form-control" required value="{{ aluno.get('p1') if aluno else '' }}" type="number" placeholder="Notas da primeira prova" name="p1" style="background-color: #f3f3f3; border: #e5e5e5; padding: 8px 10px;">
+            <input class="form-control" required value="{{ aluno.get('p1') if aluno else '' }}" type="number" step="0.1" max="10" min="0" placeholder="Notas da primeira prova" name="p1" style="background-color: #f3f3f3; border: #e5e5e5; padding: 8px 10px;">
         </div>
         <div style="display: flex; flex-direction: column; gap: 12px; margin: 12px 0;">
             <label style="font: inherit; font-size: 16px;">Prova 2</label>
-            <input class="form-control" required value="{{ aluno.get('p2') if aluno else '' }}" type="number" placeholder="Notas da segunda prova" name="p2" style="background-color: #f3f3f3; border: #e5e5e5; padding: 8px 10px;">
+            <input class="form-control" required value="{{ aluno.get('p2') if aluno else '' }}" type="number" step="0.1" max="10" min="0" placeholder="Notas da segunda prova" name="p2" style="background-color: #f3f3f3; border: #e5e5e5; padding: 8px 10px;">
         </div>
         <button class="btn" id="bt" type="submit" style="background-color: #f90; color: #fff;">Salvar</button>
         <a class="btn btn-secondary" href="{{ url_for("Aluno.lista") }}">Não</a>

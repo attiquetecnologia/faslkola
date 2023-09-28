@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template, request, url_for
+from flask import Blueprint, flash, redirect, render_template, request, url_for
 
 bp = Blueprint("Aluno", __name__)
 
@@ -31,7 +31,7 @@ def delete(id):
 def edit(id):
 
     from database.dados import alunos
-
+    erros = []
     aluno = alunos.get(id)
 
     if request.method=="POST":
@@ -40,8 +40,6 @@ def edit(id):
         t = float(request.form.get("t"))
         p1 = float(request.form.get("p1"))
         p2 = float(request.form.get("p2"))
-
-        erros = []
         
         if not nome: erros.append("Nome é um campo obrigatório")
         if not usuario: erros.append("Email é um campo obrigatório")
@@ -55,7 +53,9 @@ def edit(id):
             alunos[id]["t"] = t
             alunos[id]["p1"] = p1
             alunos[id]["p2"] = p2
+
+            flash(f"Usuário {nome}, salvo com sucesso!")
             
         return redirect(url_for("Aluno.lista", id=id))
     
-    return render_template("alunos/form.html", id=id, aluno=aluno)
+    return render_template("alunos/form.html", id=id, aluno=aluno, erros=erros)
