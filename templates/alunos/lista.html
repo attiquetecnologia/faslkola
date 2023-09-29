@@ -20,8 +20,12 @@
                     <strong>Prova 1:</strong> {{ aluno['p1'] }}</p>
                     <strong>Prova 2:</strong> {{ aluno['p2'] }}</p>
                     <strong>Trabalho:</strong> {{ aluno['t'] }}</p>
-                  </p>
-                </div><!-- ./col-->
+                </p>
+                <p><strong>Media:</strong> {{ media(aluno['t'], aluno['p1'], aluno['p2']) }}</p>
+                <hr>
+                <a class="btn btn-success" href="/alunos/10/edit">Editar</a>
+                <a class="btn btn-danger" href="/alunos/10delete">Delete</a>
+            </div><!-- ./col-->
     {% endfor %}
     {% endblock %}
 
