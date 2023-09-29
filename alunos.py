@@ -20,3 +20,7 @@ def add():
 @bp.route("/alunos/<int:id>delete")
 def delete(id):
     return render_template("alunos/from.html")
+
+@bp.route("/alunos/<int:id>/edit")
+def edit(id):
+    return render_template("alunos/form.html")

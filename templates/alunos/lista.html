@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% block content %}
+{% block content %} 
 
 <div class="container">
     <h1>Lista deAlunos</h1>
@@ -22,6 +22,9 @@
                     </p>
                     <p><strong>Média:</strong> {# media(aluno['t'], aluno['p'], aluno['p2']) #}</p>
                     <hr>
+                    <a class="btn btn-success" href="/alunos/10/edit">Editar</a> 
+                    " | "
+                    <a class="btn btn-danger" href="/alunos/10/delete">Delete</a>
             </div>
         </div>
         {% endfor %}
