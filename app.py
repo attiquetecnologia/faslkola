@@ -2,6 +2,7 @@ from flask import Flask, render_template # importa bibliotecas
 
 def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
+    app.secret_key="menssagem"
     
     @app.route("/") # cria uma rota
     def index(): # função que gerencia rota
@@ -23,6 +24,10 @@ def create_app(): # cria uma função para definir o aplicativo
     @app.route("/login")
     def login():
         return render_template("login.html")
+    
+
+    from alunos import bp 
+    app.register_blueprint(bp)
     
     return app # retorna o app criado
 
