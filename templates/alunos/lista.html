@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="container">
-    <h1>Lista de alunos</h1>
+    <h1>Lista de Alunos</h1>
     <div class="row">
         {% for id, aluno in alunos.items()%}
         <div class="col-md-3" style="border: 1px solid; margin: 5px; padding: 5px;" >
@@ -16,12 +16,16 @@
                     
                 </div><!--.flex-grow-1 -->          
             </div>
-            <hr>Notas
-                    <p>
-                        <strong>Prova1:</strong> {{ aluno['p1'] }}
-                        <strong>Prova2:</strong> {{ aluno['p2'] }}
-                        <strong>Trabalho:</strong> {{ aluno['t'] }}
-                    </p>
+            <hr>Notas 
+            <p>
+                <strong>Prova1:</strong> {{ aluno['p1'] }}
+                <strong>Prova2:</strong> {{ aluno['p2'] }}
+                <strong>Trabalho:</strong> {{ aluno['t'] }}
+            </p>
+            <p><strong>Média:</strong>{{media(aluno['t'], aluno['p1'], aluno['p2']) }}</p>
+            <hr>
+            <a class="btn btn-success" href="{{ url_for('Aluno.edit', id=id) }}/alunos/edit">Editar</a> |
+            <a class="btn btn-danger" href="{{ url_for('Aluno.delete', id=id) }}">Delete</a>
         </div>
         {% endfor %}
     </div><!--./row-->

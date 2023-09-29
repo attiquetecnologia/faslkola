@@ -43,6 +43,7 @@ def create_app(): # cria uma função para definir o aplicativo
     @app.route("/recuperar_senha", methods=('POST', 'GET'))
     def recuperarsenha():
         error = None
+        
     from alunos import bp
     app.register_blueprint(bp)
 
