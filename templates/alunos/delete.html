@@ -1,11 +1,11 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-<div class="container">
+<div class="container" style="width: 350px; padding: 30px; background-color: #fff; box-shadow: 0 0 14px rgba(0, 0, 0, .3); border-top: 5px solid #f90; display: flex; text-align: center; margin-top: 80px;">
     <form method="post">
-        <h1>Tem certeza que deseja apagar o aluno {{ aluno['nome'] }} ?</h1>
+        <h1 style="font-size: 24px;">Tem certeza que deseja apagar o aluno {{ aluno['nome'] }} ?</h1>
         <input type="hidden" value="sim" name="apagar">
-        <button class="btn btn-primary" type="submit">Sim tenho certeza!</button>
+        <button class="btn btn-primary" style="background-color: #f90; border: none;" type="submit">Sim tenho certeza!</button>
         <a class="btn btn-secondary" href="{{ url_for("Aluno.lista") }}">Não</a>
     </form>
 </div>

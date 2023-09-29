@@ -17,8 +17,17 @@
         {% endfor %}
     </div>
     {% endif %}
-    <form method="post" style="width: 400px; padding: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; background-color: #fff; box-shadow: 0 0 12px rgba(0, 0, 0, .2); border-top: 5px solid #f90;">
-        <h1 style="text-align: center;">Cadastro de alunos</h1>
+    <form method="post" style="width: 400px; padding: 30px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; background-color: #fff; box-shadow: 0 0 12px rgba(0, 0, 0, .2); border-top: 5px solid #f90; margin: 8px 0;">
+        <h1 style="text-align: center;">Cadastro de alunos {{ "| EDIT: %s" % id if request.endpoint=="Aluno.edit" else "" }}</h1>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes" style="padding: 8px 12px; border: #f90 2px solid; background-color: rgba(255, 153, 0, .2); list-style: none; border-radius: 8px;">
+                {% for message in messages %}
+                    <li style="text-align: center;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
         <div style="display: flex; flex-direction: column; gap: 12px; margin: 12px 0;">
             <label for="nome" style="font: inherit; font-size: 16px;">Nome</label>
             <input class="form-control" required value="{{ aluno.get('nome') if aluno else '' }}" type="text" placeholder="Nome" name="nome" style="background-color: #f3f3f3; border: #e5e5e5; padding: 8px 10px;">

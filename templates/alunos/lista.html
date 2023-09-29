@@ -3,6 +3,7 @@
 
 <div class="container" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
     <h1>Lista de Alunos</h1>
+    <a class="btn btn-primary" style="background-color: #f90; border: none;" href="{{ url_for("Aluno.add") }}">Adicionar</a>
     <div class="row" style="justify-content: center;">
     {% for id, aluno in alunos.items() %}
         <div class="col-md-3" style="width: 350px; padding: 20px; border-top: 5px solid #f90; margin: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, .2);">
@@ -12,7 +13,7 @@
                 </div>
                 <div class="flex-grow-1 ms-3">
                     <p><strong>Nome:</strong>{{ aluno['nome'] }}</p>
-                    <p><strong>Nome:</strong>{{ aluno['usuario'] }}</p>
+                    <p><strong>Email:</strong>{{ aluno['usuario'] }}</p>
                     <hr>Notas
                     <p>
                         <strong>Prova 1:</strong> {{ aluno['p1'] }}
