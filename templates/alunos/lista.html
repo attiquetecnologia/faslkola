@@ -17,7 +17,7 @@
                     
                 </div><!--.flex-grow-1 -->          
             </div>
-            <hr>Notas
+            <hr>Notas {{ url_for("Aluno.edit", id=id) }}
             <p>
                 <strong>Prova1:</strong> {{ aluno['p1'] }}
                 <strong>Prova2:</strong> {{ aluno['p2'] }}

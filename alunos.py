@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-bp = Blueprint("Aluno",__name__)
+bp = Blueprint("Aluno", __name__)
 
 @bp.route("/alunos/lista")
 def lista():
@@ -13,11 +13,11 @@ def lista():
     
     return render_template("alunos/lista.html", alunos=alunos, media=media)
 
-@bp.route ("/alunos/add")
+@bp.route("/alunos/add")
 def add():
     return render_template("alunos/form.html")
 
-@bp.route("/alunos/‹int:id›/delete")
+@bp.route("/alunos/<int:id>/delete")
 def delete(id):
     from database.dados import alunos
     
@@ -25,6 +25,6 @@ def delete(id):
 
     return render_template("alunos/delete.html", id=id, aluno=aluno)
 
-@bp.route("/alunos/‹int:id›/edit")
+@bp.route("/alunos/<int:id>/edit")
 def edit(id):
     return render_template("alunos/form.html")
