@@ -1,41 +1,43 @@
-{% extend 'layout.html'%}
+{% extends 'layout.html'%}
 {% block content%}
 <div class="container">
     <form method="post" class="row g-3">
-        <h1>Cadastro de Alunos</h1>
+        <h1>Cadastro de Alunos {{ "| EDIT: %s" % id if request.endpoint=="Alunos.edit" else "" }}</h1>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
-                <ul class=flashes>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
+            <ul class="flashes"> 
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
         {% endwith %}
-        {% if erros length>0 %}
-        <div class="alert alert-info"
-        {% for e in erros %}
-        <p>{{ e }}</p>
+        {% if erros |   length>0 %}
+            <div class="alert alert-info">
+            {% for e in erros %}
+            <p>{{ e }}</p>
+            {% endfor %}
+            </div>
         {% endif %}
         <div class="col-6">
             <label class="form-label">Nome</label>
             <input type="text" class="form-control" name="nome"
-                placeholder="Nome completo" value="{{ aluno.get('nome') if aluno else '"}}" required>
+                placeholder="Nome completo" value="{{ aluno.get('nome') if aluno else ''}}" required>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Melhor email</label>
                 <input type="email" class="form-control" name="email"
-                    placeholder="Melhor email" value="{{ aluno.get('usuario') if aluno else}}" required>
+                    placeholder="Melhor email" value="{{ aluno.get('usuario') if aluno else''}}" required>
             </div>
             <div class="col-md-4">
                 <label class="form label">Nota de trabalho</label>
                 <input type="number" class="form-control" name="t" max="10" min="0" required
-                    placeholder="Nota de trabalho" value="{{ aluno.get('t') if aluno else}}">
+                    placeholder="Nota de trabalho" value="{{ aluno.get('t') if aluno else''}}">
             </div>
             <div class="col-md-4">
                 <label class="form-label">Prova 1</label>
                 <input type="number" class="form-control" name="p1" max="10" min="0" required
-                    placeholder="Nota da primeira prova" value="{{ aluno.get('p1') if aluno else}}">
+                    placeholder="Nota da primeira prova" value="{{ aluno.get('p1') if aluno else''}}">
             </div>
             <div class="col-md-4">
                 <label class="col-md-4">Prova 2</label>
@@ -50,4 +52,4 @@
         
     </form>
 </div>
-{% endblock%}
+{% endblock %}

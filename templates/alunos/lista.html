@@ -3,29 +3,33 @@
 
 <div class="container">
     <h1>Lista de Alunos</h1>
+        <a class="btn btn-primary" href="{{ url_for("Aluno.add") }}">Adicionar</a>
+    
     <div class="row">
-    {% for id, aluno in alunos.items() %}
-        <div class="col-md-3" style="border: 1px solid ; margin: 5px; padding: 5px;">
+        {% for id, aluno in alunos.items() %}
+        <div class="col-md-3" style="border: 1px solid; margin: 5px; padding: 5px;">
             <div class="d-flex">
                 <div class="flex-shrink-0">
-                    <img src="{{ aluno['avatar'] }}" alt="{{ aluno['nome'] }}" width="100">
+                    <img src="{{ aluno['avatar']}}" width="100px" alt="{{ aluno['nome']}}">
                 </div>
                 <div class="flex-grow-1 ms-3">
-                  <p><strong>Nome:</strong> {{ aluno['nome'] }}</p>
-                  <p><strong>Nome:</strong> {{ aluno['usuario'] }}</p>
-                </div><!-- ./flex-grow-1 -->
-            </div><!-- ./d-flex-->
-                  <hr>Notas
-                  <p>
-                    <strong>Prova 1:</strong> {{ aluno['p1'] }}</p>
-                    <strong>Prova 2:</strong> {{ aluno['p2'] }}</p>
-                    <strong>Trabalho:</strong> {{ aluno['t'] }}</p>
-                </p>
-                <p><strong>Media:</strong> {{ media(aluno['t'], aluno['p1'], aluno['p2']) }}</p>
-                <hr>
-                <a class="btn btn-success" href="/alunos/10/edit">Editar</a>
-                <a class="btn btn-danger" href="/alunos/10delete">Delete</a>
-            </div><!-- ./col-->
+                    <p><strong>Nome:</strong> {{ aluno['nome']}} (id: {{ id }})</p>
+                    <p><strong>Nome:</strong> {{ aluno['usuario']}}</p>
+                    <hr>Notas
+                    <p>
+                        <strong>Prova 1:</strong> {{ aluno['p1']}}</p>
+                        <strong>Prova 2:</strong> {{ aluno['p2']}}</p>
+                        <strong>Trabalho:</strong> {{ aluno['t']}}</p>
+                    </p>
+                    <p><strong>Média:</strong> {{ media(aluno ['t'], aluno['p1'], aluno['p2']) }}</p>
+                    <hr>
+                    <a class="btn btn-success" href="/alunos/10/edit">Editar</a>|
+                    <a class="btn btn-danger" href="/alunos/10/delete">Delete</a>
+                </div>
+            </div>
+        </div>
     {% endfor %}
-    {% endblock %}
+    </div><!-- ./row -->
+</div>
+{% endblock %}
 
