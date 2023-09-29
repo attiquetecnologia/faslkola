@@ -11,7 +11,7 @@ def create_app(): # cria uma função para definir o aplicativo
 
     @app.route("/alunos")
     def alunos():
-        import json
+
         from database.dados import alunos
 
         # Função lambda cria funções de 1 linha só
@@ -58,6 +58,9 @@ def create_app(): # cria uma função para definir o aplicativo
         # verificar de novo se email existe e se as senhas são iguais
         # Se forem iguais, salva no banco de dados alunos['id']['senha'] = novasenha
         return render_template("recuperarsenha.html")
+
+    from alunos import bp 
+    app.register_blueprint(bp)
 
     return app # retorna o app criado
 
