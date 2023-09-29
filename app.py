@@ -61,6 +61,9 @@ def create_app():
             return redirect(url_for("index"))
 
         return render_template("registro.html")
+    
+    from alunos import bp
+    app.register_blueprint(bp)
 
     return app
 
