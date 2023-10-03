@@ -3,17 +3,17 @@
 
 <div class="container">
     <form method="post" class="row g-3">
-        <h1>Cadastro de Alunos</h1>
+        <h1>Cadastro de Alunos {{ "| EDIT: %s" % id if request.endpoint=="Aluno.edit" else "" }}</h1>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul class="flashes">
-            {% for menssage in messages %}
+            {% for message in messages %}
             <li>{{ message }}</li>
             {% endfor %}
             </ul>
         {% endif %}
         {% endwith %}
-        {% if erros | lenght>0 %}
+        {% if erros | length>0 %}
         <div class="alert alert-info">
         {% for e in erros %}
         <p>{{ e }}</p>
@@ -32,18 +32,18 @@
         </div>
         <div class="col-md-4">
             <label class="form-label">Nota de trabalho</label>
-            <input type="number" classe="form-control" name="t" max="10" min="0" required
-                placeholder="Nota de trabalho" value="{{ aluno.get('t') if aluno else ''}}"required>
+            <input type="number" class="form-control" name="t" max="10" min="0" step="any" required
+                placeholder="Nota de trabalho" value="{{ aluno.get('t') if aluno else ''}}" required>
         </div>
         <div class="col-md-4">
             <lbel class="form-label">Prova 1</lbel>
-            <input type="number" class="form-control" name="p1" max="10" min="0" required
+            <input type="number" class="form-control" name="p1" max="10" min="0"  step="any" required
                 placehlder="Nota da pimeira prova" value="{{ aluno.get('p1') if aluno else ''}}">
         </div>
         <div class="col-md-4">
             <label class="form-label">Prova 2</label>
-            <input type="number" class="form-control" name="p2"
-                placeholder="Nota da segunda prova" value="{{ aluno.get('p2') if aluno else ''}}">
+            <input type="number" class="form-control" name="p2" max="10" min="0"  step="any"
+                placeholder="Nota da segunda prova"  value="{{ aluno.get('p2') if aluno else ''}}" required>
         </div>
 
         <div class="col-12">
