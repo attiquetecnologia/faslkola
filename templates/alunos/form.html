@@ -3,7 +3,8 @@
 
 <div class="container">
     <form method="post" class="row g-3">
-        {% with messages = get_flashed_messagens() %}
+        <h1>Cadastro de Alunos</h1>
+        {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul class="=flashes">
             {% for message in messages %}
@@ -11,15 +12,14 @@
             {% endfor %}
             </ul>
             {% endif %}
-            {% endwhith %}
-        <h1>Cadastro de Alunos</h1>
-        {% if erros | length>0 %}
-        <div class="alert alert-info">
-            {% for e in erros %}
-            <p> {{ e }}</p>
-            {% endfor %}
-        </div>
-        {% endif %}
+            {% endwith %}
+            {% if erros | length>0 %}
+            <div class="alert alert-info">
+                {% for e in erros %}
+                <p> {{ e }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
 
         <div class="col-6">
             <label class="form-label">Nome</label>
