@@ -7,17 +7,15 @@ bp = Blueprint("Aluno",__name__)
 
 @bp.route("/alunos/lista")
 def lista():
-    from database.dados import alunos
-    lista = db.session.execute(text("select * from alunos"))
-    lista = db.scalars(select(Aluno))
+    lista = db.session.scalars(select(Aluno))
 
     #Função lambda cria funçõesde 1 linha só    
     # meida = lambda t,p1,p2: t*.3+p1*.35+p2*.35
     def media(t, p1, p2):
         return t*.3+p1*.35+p2*.35
-    return render_template("alunos/lista.html", lista=lista, alunos=alunos, media=media)
+    return render_template("alunos/lista.html", lista=lista, media=media)
 
-@bp.route("/alunos/add", methods=("GET", "POST"))
+@bp.route("/alunos/add", methods=("GET", "POST"))   
 def add ():
     from database.dados import alunos
     erros = []
