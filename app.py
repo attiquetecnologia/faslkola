@@ -1,8 +1,18 @@
+import click
 from flask import Flask, app, redirect, render_template, request, session, url_for
+from flask.cli import with_appcontext
+from database.connection import db
 
 def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
     app.secret_key = "abax"
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqldp://usuario:senha@localhost:3306/banco_dados"
+    app.config["SQLALCHEMY_TRACK_MODFICATIONS"] = False
+
+    db.init_app(app)
+    app.cli.add(init_db_command)
+
     @app.route("/") # cria uma rota
     def index(): # função que gerencia rota
         nome = "Alexandre xandon 07"
@@ -56,13 +66,28 @@ def create_app(): # cria uma função para definir o aplicativo
     
         return render_template("usuarios/perfil.html") #, usuario=usuario
     
-    from usuarios.controller import bp
-    app.register_blueprint(bp)
+    from usuarios.controller import db
+    app.register_blueprint(db)
     
-    from alunos.controller import bp 
-    app.register_blueprint(bp)
+    from alunos.controller import db
+    app.register_blueprint(db)
     
     return app # retorna o app criado
+
+def init_db():
+    db.drop_all()
+    # db.create_all()
+    db.reflect()
+
+
+@click.command("init-db")
+@with_appcontext
+def init_db_command():
+    """Clear existing data and create new tables."""
+
+    init_db()
+    click.echo("Initialized the database.")
+
 
 if __name__ == "__main__": # 'função principal' do python
     create_app().run(debug=True) # executa o flask na porta http://127.0.0.1:5000
