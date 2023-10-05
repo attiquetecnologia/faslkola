@@ -8,17 +8,6 @@ def create_app(): # cria uma função para definir o aplicativo
         nome = "Alexandre xandon 07"
         return render_template("index.html", nome=nome) # combina o python com html
 
-    @app.route("/alunos")
-    def alunos():
-        import json
-        from database.dados import alunos
-
-        # Função lambda cria funções de 1 linha só
-        # media = lambda t,p1,p2: t*.3+p1*.35+p2*.35
-        def media(t, p1, p2):
-            return t*.3+p1*.35+p2*.35
-        
-        return render_template("lista.html", alunos=alunos, media=media )
 
     @app.route("/login", methods=('POST', 'GET'))
     def login():
@@ -65,9 +54,12 @@ def create_app(): # cria uma função para definir o aplicativo
             for k,v,x in alunos.items():
                 pass
     
-        return render_template("perfil.html") #, usuario=usuario
+        return render_template("usuarios/perfil.html") #, usuario=usuario
     
-    from alunos import bp 
+    from usuarios.controller import bp
+    app.register_blueprint(bp)
+    
+    from alunos.controller import bp 
     app.register_blueprint(bp)
     
     return app # retorna o app criado
