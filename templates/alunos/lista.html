@@ -27,7 +27,7 @@
             </p>
             <p><strong>Média:</strong> {# media(aluno['t'], aluno['p'], aluno['p2']) #}</p>
             <hr>
-            <a class="btn btn-success" href="{{ url_for("Aluno.edit", id=aluno.id) }}>Editar</a> 
+            <a class="btn btn-success" href="{{ url_for("Aluno.edit", id=aluno.id) }}">Editar</a> 
             <a class="btn btn-danger" href="{{ url_for("Aluno.delete", id=aluno.id) }}">Delete</a>
         </div>
         {% endfor %}
