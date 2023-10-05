@@ -5,7 +5,7 @@ def create_app(): # cria uma função para definir o aplicativo
     app.secret_key = "abax"
     @app.route("/") # cria uma rota
     def index(): # função que gerencia rota
-        nome = "Rodrigo 123"
+        nome = "Manuela"
         return render_template("index.html", nome=nome) # combina o python com html
 
     @app.route("/alunos")
@@ -36,27 +36,10 @@ def create_app(): # cria uma função para definir o aplicativo
                     error = "Usuario ou senha inválidos!"
 
         return render_template("login.html", error=error)
-        
-    @app.route("/perfil", methods=("GET", "POST"))
-    def perfil():
-        # Pega dados e devolve pro hTML e recebe dados do html
-
-        if request.method=="POST":
-            # logica salvar
-            nome=request.form.get("nome")
-
-        else:
-            # busca dados do banco
-            from database.dados import alunos
-            for k,v in alunos.items():
-                if v['usuario'] == session['user']['usuario']:
-                    usuario = v
-
-        return render_template('perfil.html', usuario=usuario)
-    from alunos import bp
+    from alunos import bp 
     app.register_blueprint(bp)
-
-    return app # retorna o app criado
     
+    return app # retorna o app criado
+
 if __name__ == "__main__": # 'função principal' do python
     create_app().run(debug=True) # executa o flask na porta http://127.0.0.1:5000
