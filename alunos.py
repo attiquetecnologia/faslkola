@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, request, url_for, flash
 
-bp = Blueprint("Aluno", _name_)
+bp = Blueprint("Aluno", __name__)
 
 @bp.route("/alunos/lista")
 def lista():
