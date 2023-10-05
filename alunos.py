@@ -4,7 +4,14 @@ bp = Blueprint("Aluno",__name__)
 
 @bp.route("/alunos/lista")
 def lista():
-    return render_template("alunos/lista.html")
+    from database.dados import alunos
+
+    # Função lambda cria funcões de 1 linha só
+    # média = lambda t,p1,p2: t*.3+p1*.35+p2*.35
+    def media(t, p1, p2):
+        return t*.3+p1*.35+p2*.35
+    
+    return render_template("alunos/lista.html", alunos=alunos, media=media)
 
 @bp.route("/alunos/add")
 def add():
