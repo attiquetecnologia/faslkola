@@ -2,11 +2,15 @@
 {% block content %}
 
 <div class="container">
-    <h1>Lista de Alunos</h1>
+    <div class="d-flex flex-row">
+        <h1>Lista de Alunos</h1>
         <a class="btn btn-primary" href="{{ url_for("Aluno.add") }}">Adicionar</a>
-    
+    </div>
     <div class="row">
-        {% for id, aluno in alunos.items() %}
+    {% for l in lista %}
+    <p>{{ l }}</p>
+    {% endfor %}
+    {% for id, aluno in alunos.items() %}
         <div class="col-md-3" style="border: 1px solid; margin: 5px; padding: 5px;">
             <div class="d-flex">
                 <div class="flex-shrink-0">

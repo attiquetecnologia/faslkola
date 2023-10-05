@@ -1,48 +1,30 @@
-from flask import Flask, redirect, render_template, request, session, url_for # importa bibliotecas
+import click
+from flask import Flask,render_template, request
+from flask.cli import with_appcontext
+from database.connection import db
+
 
 def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
+    app.secret_key = "abax"
     
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqldb://root:5e5i_123@localhost:3306/flaskola"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    db.init_app(app)
+    app.cli.add_command(init_db_command)
+
     @app.route("/") # cria uma rota
     def index(): # função que gerencia rota
         nome = "Barbosa 111"
         return render_template("index.html", nome=nome) # combina o python com html
 
-    @app.route("/alunos")
-    def alunos():
-        import json
-        from database.dados import alunos
 
-        # Função lambda cria funções de 1 linha só
-        # media = lambda t,p1,p2: t*.3+p1*.35+p2*.35
-        def media(t, p1, p2):
-            return t*.3+p1*.35+p2*.35
-        
-        return render_template("lista.html", alunos=alunos, media=media )
-
-    @app.route("/login", methods=('POST', 'GET'))
-    def login():
-        error = None
-        if request.method == 'POST':
-            email = request.form.get('email')
-            senha = request.form.get('senha')
-
-            from database.dados import alunos
-            for k,v in alunos.items():
-                if email == v.get('usuario') and senha == v.get('senha'):
-                    session['user'] = v
-                    return redirect(url_for('index'))
-                else:
-                    error = "Usuario ou senha inválidos!"
-
-        return render_template("login.html", error=error)
     @app.route("/registro", methods=('POSTE', 'GET'))
     def registro():
         return render_template("registro.html")
     
-    @app.route("/logout", methods=('POSTE', 'GET'))
-    def logout():
-        return redirect(url_for("login"))
+    
     
     @app.route("/lost_pass", methods=('POSTE', 'GET'))
     def lost_pass():
@@ -59,16 +41,29 @@ def create_app(): # cria uma função para definir o aplicativo
             #logica salvar
             nome = request.form.get("nome")
         return render_template("perfil.html")
-    from alunos import bp
+    from alunos.controller import bp
+    app.register_blueprint(bp)
+
+    from usuarios.controller import bp
     app.register_blueprint(bp)
     
     return app # retorna o app criado
-    
-    @app.route("/recuperarsenha", methods=('POST', 'GET'))
-    def recuperarsenha():
-        error = None
-        return render_template("recuperarsenha.html", error=error)
 
+def init_db():
+    db.drop_all()
+    # db.create_all()
+    db.reflect()
+
+@click.command("init-db")
+@with_appcontext
+def init_db_command():
+    """Clear existing data and create new tables."""
+    
+    init_db()
+    click.echo("Initialized the database.")
+
+
+    
     
 
 
