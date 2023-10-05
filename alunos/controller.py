@@ -1,12 +1,15 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from sqlalchemy import text
+from sqlalchemy import text, select
 from database.connection import db
+from .model import Aluno
+
 bp = Blueprint("Aluno",__name__)
 
 @bp.route("/alunos/lista")
 def lista():
     from database.dados import alunos
     lista = db.session.execute(text("select * from alunos"))
+    lista = db.scalars(select(Aluno))
 
     #Função lambda cria funçõesde 1 linha só    
     # meida = lambda t,p1,p2: t*.3+p1*.35+p2*.35
