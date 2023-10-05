@@ -2,36 +2,17 @@ from flask import Flask, redirect, render_template, request, session, url_for # 
 
 def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
-
     app.secret_key = "abax"
     @app.route("/") # cria uma rota
     def index(): # função que gerencia rota
         nome = "Beatriz"
         return render_template("index.html", nome=nome) # combina o python com html
 
-    @app.route("/alunos")
-    def alunos():
-        import json
-        from database.dados import alunos
-        return render_template("lista.html", alunos=alunos )
 
-    @app.route("/login", methods=('POST', 'GET'))
-    def login():
-        error = None
-        if request.method == 'POST':
-            email = request.form.get('email')
-            senha = request.form.get('senha')
+    from usuarios.controller import bp
+    app.register_blueprint(bp)
 
-            from database.dados import alunos
-            for k,v in alunos.items():
-                if email == v.get('usuario') and senha == v.get('senha'):
-                    session['user'] = v
-                    return redirect(url_for('index'))
-            else:
-                error = "usuario ou senha inválidos!"
-
-        return render_template("login.html", error=error) 
-    from alunos import bp 
+    from alunos.controller import bp 
     app.register_blueprint(bp)
 
     return app # retorna o app criado
