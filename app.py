@@ -2,11 +2,11 @@ from flask import Flask, redirect, render_template, request, session, url_for # 
 
 def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
-    
+
     app.secret_key = "abax"
     @app.route("/") # cria uma rota
     def index(): # função que gerencia rota
-        nome = "Ana Clara"
+        nome = "Beatriz"
         return render_template("index.html", nome=nome) # combina o python com html
 
     @app.route("/alunos")
