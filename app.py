@@ -4,9 +4,8 @@ def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
     app.secret_key = "abax"
     @app.route("/") # cria uma rota
-    
     def index(): # função que gerencia rota
-        nome = "Anna 005"
+        nome = "Manuela"
         return render_template("index.html", nome=nome) # combina o python com html
 
     @app.route("/alunos")
@@ -37,7 +36,8 @@ def create_app(): # cria uma função para definir o aplicativo
                     error = "Usuario ou senha inválidos!"
 
         return render_template("login.html", error=error)
-    @app.route
+    from alunos import bp 
+    app.register_blueprint(bp)
     
     return app # retorna o app criado
 
