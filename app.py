@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, redirect, render_template, request, session, url_for, flash 
 
 def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
@@ -8,53 +8,10 @@ def create_app(): # cria uma função para definir o aplicativo
         nome = "Rodrigo 123"
         return render_template("index.html", nome=nome) # combina o python com html
 
-    @app.route("/alunos")
-    def alunos():
-        import json
-        from database.dados import alunos
-
-        # Função lambda cria funções de 1 linha só
-        # media = lambda t,p1,p2: t*.3+p1*.35+p2*.35
-        def media(t, p1, p2):
-            return t*.3+p1*.35+p2*.35
-        
-        return render_template("lista.html", alunos=alunos, media=media )
-
-    @app.route("/login", methods=('POST', 'GET'))
-    def login():
-        error = None
-        if request.method == 'POST':
-            email = request.form.get('email')
-            senha = request.form.get('senha')
-
-            from database.dados import alunos
-            for k,v in alunos.items():
-                if email == v.get('usuario') and senha == v.get('senha'):
-                    session['user'] = v
-                    return redirect(url_for('index'))
-                else:
-                    error = "Usuario ou senha inválidos!"
-
-        return render_template("login.html", error=error)
-        
-    @app.route("/perfil", methods=("GET", "POST"))
-    def perfil():
-        # Pega dados e devolve pro hTML e recebe dados do html
-
-        if request.method=="POST":
-            # logica salvar
-            nome=request.form.get("nome")
-
-        else:
-            # busca dados do banco
-            from database.dados import alunos
-            for k,v in alunos.items():
-                if v['usuario'] == session['user']['usuario']:
-                    usuario = v
-
-        return render_template('perfil.html', usuario=usuario)
-    from alunos import bp
+    from usuarios.controller import bp
     app.register_blueprint(bp)
+
+    from alunos.controller import bp
 
     return app # retorna o app criado
     
