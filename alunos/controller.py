@@ -43,18 +43,19 @@ def add ():
 
             flash(f"Usuário {nome}, salvo com sucesso!")
 
-            return redirect(url_for("Aluno.edit, id=aluno.id"))
+            return redirect(url_for("Aluno.edit", id=aluno.id))
         
     return render_template("alunos/form.html", erros=erros)
 
 
 @bp.route("/alunos/<int:id>/delete", methods=("GET", "POST"))
 def delete(id):
-    from database.dados import alunos
+    aluno = Aluno.query.filter_by(id=id).first()
 
-    aluno = alunos.get(id)
     if request.method == "POST" and request.form.get("apagar") == "sim":
-        del alunos[id] # deleta o aluno do dicionario
+        db.session.delete(aluno) #delete o aluno
+        db.session.commit()
+        
         return redirect(url_for("Aluno.lista"))
 
     return render_template("alunos/delete.html", id=id, aluno=aluno)
