@@ -13,28 +13,28 @@
         {% endif %}
         <div class="col-6">
             <label class="form-label">Nome</label>
-            <input type="text" class="form-control" nome="nome"
-                placeholder="Nome completo" value="{{ aluno.get('nome') if aluno else '' }}">
+            <input type="text" class="form-control" name="nome"
+                placeholder="Nome completo" value="{{ aluno.nome if aluno else }}">
         </div>
         <div class="col-md-6">
             <label class="form-label">Melhor Email</label>
-            <input type="email" class="form-control" nome="email"
-            placeholder="Melhor email" value="{{ aluno.get('usuario') if aluno else '' }}">
+            <input type="email" class="form-control" name="email"
+            placeholder="Melhor email" value="{{ aluno.usuario if aluno else }}">
         </div>
         <div class="col-md-4">
             <label class="form-label">Nota de Trabalho</label>
-            <input type="number" class="form-control" nome="t"
-            placeholder="Nota de trabalho" value="{{ aluno.get('t') if aluno else '' }}">
+            <input type="number" class="form-control" name="t"
+            placeholder="Nota de trabalho" value="{{ aluno.t if aluno else }}">
         </div>
         <div class="col-md-4">
             <label class="form-label">Prova 1</label>
-            <input type="number" class="form-control" nome="p1"
-            placeholder="Nota da primeira prova" value="{{ aluno.get('p1') if aluno else '' }}">
+            <input type="number" class="form-control" name="p1"
+            placeholder="Nota da primeira prova" value="{{ aluno.p1 if aluno else }}">
         </div>
         <div class="col-md-4">
             <label class="form-label">Prova 2</label>
-            <input type="number" class="form-control" nome="p2"
-            placeholder="Nota da segunda prova" value="{{ aluno.get('p2') if aluno else '' }}">
+            <input type="number" class="form-control" name="p2"
+            placeholder="Nota da segunda prova" value="{{ aluno.p2 if aluno else }}">
         </div>
 
         <button class="btn btn-primary" type="submit">Salvar</button>
