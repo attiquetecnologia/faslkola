@@ -51,13 +51,14 @@ def add():
 
 @bp.route("/alunos/<int:id>/delete", methods=("GET", "POST"))
 def delete(id): 
-    from database.dados import alunos
-
-    aluno = alunos.get(id)
+    aluno = Aluno.query.filter_by(id=id).first()
 
     if request.method == "POST" and request.form.get("apagar") == "sim":
-        del alunos[id]
-        return redirect(url_for("Aluno.lista"))
+        
+       db.session.delete(aluno) # deleta o aluno
+       db.session.commit()
+
+       return redirect(url_for("Aluno.lista"))
 
     return render_template("alunos/delete.html", id=id, aluno=aluno)
 
