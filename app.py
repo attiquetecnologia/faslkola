@@ -1,4 +1,3 @@
-from os import name
 from flask import Flask, redirect, render_template, request, session, url_for
 
 def create_app(): # cria uma função para definir o aplicativo
@@ -6,7 +5,7 @@ def create_app(): # cria uma função para definir o aplicativo
     app.secret_key = "abax"
     @app.route("/") # cria uma rota
     def index(): # função que gerencia rota
-        nome = "Marcão"
+        nome = "Manuela"
         return render_template("index.html", nome=nome) # combina o python com html
 
     @app.route("/alunos")
@@ -37,29 +36,9 @@ def create_app(): # cria uma função para definir o aplicativo
                     error = "Usuario ou senha inválidos!"
 
         return render_template("login.html", error=error)
-     
-    @app.route("/registro", methods=('POST','GET'))
-    def registro():
-        error = None
-        if request.method == 'POST':
-            name = request.form.get('nome')
-            email = request.form.get('email')
-            senha = request.form.get('senha')
-            repita = request.form.get('repita')
-
-            from database.dados import alunos
-            for k,v in alunos.items():
-                if email == v.get('usuario') :
-                    error = "Usuario já cadastrado"
-                else:
-                    error = "Usuario ou senha inválidos!"
-                    #cadastrar usuario aqui
-        return render_template("registro.html", error=error)
-
-
-    from alunos import bp
-    app.register_blueprint(bp)  
-          
+    from alunos import bp 
+    app.register_blueprint(bp)
+    
     return app # retorna o app criado
 
 if __name__ == "__main__": # 'função principal' do python

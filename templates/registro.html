@@ -2,6 +2,13 @@
 
 {% block content %}
 <div class="container">
+    <form method="post">
+        <h1>Cadastro de Alunos</h1>
+
+        <button class="btn btn-primary" type="submit">Salvar</button>
+        <a href="{{ url_for("Aluno.lista") }}" class="btn btn-secondary">Não</a>
+
+    </form>
 
     <form>
         <div class="mb-3">
