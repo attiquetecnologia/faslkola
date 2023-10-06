@@ -17,7 +17,7 @@ def login():
             else:
                 error = "Usuario ou senha inválidos!"
 
-    return render_template("usuarios/login.html", error=error)
+    return render_template("/login.html", error=error)
 
 @bp.route("/logout")
 def logout():
@@ -35,4 +35,7 @@ def perfil():
             nome = request.form.get("nome")
         return render_template("perfil.html")
 
-    
+
+@bp.route("/registro", methods=('POSTE', 'GET'))
+def regitro():
+     return render_template("registro.html")
