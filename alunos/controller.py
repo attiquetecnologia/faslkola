@@ -65,9 +65,8 @@ def delete(id):
 
 @bp.route("/alunos/<int:id>/edit", methods=("GET", "POST"))
 def edit(id):
-    from database.dados import alunos
     erros = []
-    aluno = alunos.get(id)
+    aluno = Aluno.query.filter_by(id=id).first()
 
     if request.method=="POST":
         nome = request.form.get("nome")
@@ -85,11 +84,13 @@ def edit(id):
 
         if len(erros) == 0:
             #altera usuário no banco de dados
-            alunos[id]["nome"] = nome
-            alunos[id]["email"] = email
-            alunos[id]["t"] = t
-            alunos[id]["p1"] = p1
-            alunos[id]["p2"] = p2
+            aluno.nome = nome
+            aluno.email = email
+            aluno.t = t
+            aluno.p1 = p1
+            aluno.p2 = p2
+            db.session.add(aluno)
+            db.session.commit()
 
             flash(f"Usuário {nome}, salvo com sucesso!")
 
