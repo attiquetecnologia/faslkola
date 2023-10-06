@@ -1,6 +1,7 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
-from sqlalchemy import text
+from sqlalchemy import text, select
 from database.connection import db
+from .model import Aluno
 
 bp = Blueprint("Aluno", __name__)
 
@@ -8,6 +9,7 @@ bp = Blueprint("Aluno", __name__)
 def lista(): 
     from database.dados import alunos
     lista = db.session.execute(text("Select * from alunos"))
+    lista = db.session.scalars(select(Aluno))
 
     # função lamba cria funções de 1 linha só
     # média = lamba t, p1, p2: t*.3+p1* .35+p2*.35
