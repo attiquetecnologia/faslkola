@@ -1,17 +1,18 @@
 import click
-from flask import Flask, app, redirect, render_template, request, session, url_for
+from flask import Flask, redirect, render_template, request, session, url_for
 from flask.cli import with_appcontext
+from sqlalchemy import text
 from database.connection import db
 
 def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
     app.secret_key = "abax"
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqldp://usuario:senha@localhost:3306/banco_dados"
-    app.config["SQLALCHEMY_TRACK_MODFICATIONS"] = False
-
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqldb://root:5e5i_123@localhost:3306/flaskola"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    
     db.init_app(app)
-    app.cli.add(init_db_command)
+    app.cli.add_command(init_db_command)
 
     @app.route("/") # cria uma rota
     def index(): # função que gerencia rota
@@ -66,11 +67,11 @@ def create_app(): # cria uma função para definir o aplicativo
     
         return render_template("usuarios/perfil.html") #, usuario=usuario
     
-    from usuarios.controller import db
-    app.register_blueprint(db)
+    from usuarios.controller import bp
+    app.register_blueprint(bp)
     
-    from alunos.controller import db
-    app.register_blueprint(db)
+    from alunos.controller import bp
+    app.register_blueprint(bp)
     
     return app # retorna o app criado
 

@@ -1,10 +1,13 @@
 from flask import Blueprint, redirect, render_template, request, url_for
+from sqlalchemy import text
+from database.connection import db
 
 bp = Blueprint("Aluno", __name__)
 
 @bp.route("/alunos/lista")
 def lista():
     from database.dados import alunos
+    lista = db.session.execute(text("select * from alunos"))
 
     # Função labda cria funções de 1 linha só
     # media = lambda t,p1,p2: t*.3+p1*.35+p2*.35

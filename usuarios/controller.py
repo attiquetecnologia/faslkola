@@ -1,9 +1,9 @@
-from flask import request, session, redirect, Blueprint, render_template,url_for
+from flask import request, session, redirect, Blueprint, render_template, url_for
 
 
-db = Blueprint("Usuario", __name__)
+bp = Blueprint("Usuario", __name__)
 
-@db.route("/login", methods=('POST', 'GET'))
+@bp.route("/login", methods=('POST', 'GET'))
 def login():
     error = None
     if request.method == 'POST':
@@ -20,7 +20,7 @@ def login():
 
     return render_template("usuarios/login.html", error=error)
 
-@db.route("/perfil")
+@bp.route("/perfil")
 def perfil():
 
     if 'user' not in session and False:
@@ -41,6 +41,6 @@ def perfil():
     
     return render_template("perfil.html")  #, usuario=usuario
 
-@db.route("/logout")
+@bp.route("/logout")
 def logout():
     return redirect(url_for("login"))
