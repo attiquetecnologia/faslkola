@@ -11,7 +11,7 @@
         <div class="col-md-3" style="border: 1px solid; margin: 5px; padding: 5px;">
             <div class="d-flex">
                 <div class="flex-shrink-0">
-                    <img src="{{ url_for('static', filename='/images/'+aluno.avatar) }}" width="100px" alt="{{ aluno.nome}}">
+                    <img src="{{ url_for('static', filename='/images/'+aluno.avatar if aluno.avatar else '') }}" width="100px" alt="{{ aluno.nome}}">
                 </div>
                 <div class="flex-grow-1 ms-3">
                     <p><strong>Nome:</strong> {{ aluno.nome}} (id: {{ aluno.id }})</p>
