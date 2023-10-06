@@ -24,27 +24,27 @@
         <div class="col-6">
             <label class="form-label">Nome</label>
             <input type="text" class="form-control" name="nome" max="10" min="0" 
-                 placeholder="Nome completo" value="{{ aluno.get('nome') if aluno else ''}}"> required
+                 placeholder="Nome completo" value="{{ aluno.nome if aluno else  ''}}"> required
         </div>
         <div class="cold-md-6">
             <label class="form-label">Melhor Email</label>
             <input type="email" class="form-control" name="email" name="nome" max="10" min="0" 
-                 placeholder="Melhor email" value="{{ aluno.get('usuario') if aluno else ''}}" required>
+                 placeholder="Melhor email" value="{{ aluno.usuario if aluno else ''}}" required>
         </div>
         <div class="cold-md-4">
             <label class="form-label">Nota de trabalho</label>
             <input type="number" class="form-control" name="t" name="nome" max="10" min="0" 
-                 placeholder="Nota de trabalho" step="any" value="{{ aluno.get('t') if aluno else ''}}" required>
+                 placeholder="Nota de trabalho" step="any" value="{{ aluno.t if aluno else ''}}" required>
         </div>
         <div class="cold-md-4">
             <label class="form-label">Prova 1</label>
             <input type="number" class="form-control" name="p1" name="nome" max="10" min="0" 
-                 placeholder="Nota da primeira prova" step="any" value="{{ aluno.get('p1') if aluno else ''}}" requerid>
+                 placeholder="Nota da primeira prova" step="any" value="{{ aluno.p1 if aluno else ''}}" requerid>
         </div>
         <div class="cold-md-4">
             <label class="form-label">Prova 2</label>
             <input type="number" class="form-control" name="p2"
-                 placeholder="Nota da segunda prova" step="any" value="{{ aluno.get('p2') if aluno else ''}}" requerid>
+                 placeholder="Nota da segunda prova" step="any" value="{{ aluno.p2 if aluno else ''}}" requerid>
         </div>
         
          <div class="col-12">

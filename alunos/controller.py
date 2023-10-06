@@ -37,7 +37,7 @@ def add():
         if len(erros) == 0:
             aluno = Aluno(**{"nome" : nome, "email": email, "t": t, "p1": p1,"p2": p2})
             db.session.add(aluno)
-            db.session.commit() #|persiste no banco
+            db.session.commit() #|persiste no
 
             flash(f"Usuário {nome}, salvo com sucesso!")
 
@@ -61,32 +61,34 @@ def delete(id):
 
 @bp.route("/alunos/<int:id>/edit", methods= ("GET", "POST"))
 def edit(id):
-    from database.dados import alunos
-    erros = []
     
+    erros = []
+    aluno = Aluno.query.filter_by(id=id). first()
 
     if request.method=="POST":
         nome = request.form.get("nome")
-        usuario = request.form.get("email")
+        email = request.form.get("email")
         t = float(request.form.get("t"))
         p1 = float(request.form.get("p1"))
         p2 = float(request.form.get("p2"))
 
         #validações
         if not nome: erros.append("Nome é um campo obrigatório")
-        if not usuario: erros.append("Email é um campo obrigatório")
+        if not email: erros.append("Email é um campo obrigatório")
         if not t or t <0 or t >10: erros.append("Trabalho é um campo obrigatório ou valores não entre 0-10")
         if not p1 or p1 <0 or p1 >10: erros.append("Prova 1 é um campo obrigatório ou valores não entre 0-10")
         if not p2 or p2 <0 or p2 >10: erros.append("Prova 2 é um campo obrigatório ou valores não entre 0-10")
 
-        if usuario in str(alunos): erros.append("Email já registrado")
+        if email in str(aluno): erros.append("Email já registrado")
 
         if len(erros) == 0:
-            alunos[id] ["nome"] = nome
-            alunos[id] ["usuario"] = usuario
-            alunos[id] ["t"] = t
-            alunos[id] ["p1"] = p1
-            alunos[id] ["p2"] = p2
+            aluno.nome = nome
+            aluno.email= email
+            aluno.t= t
+            aluno.p1= p1
+            aluno.p2 = p2
+            db.session.add(Aluno)
+            db.session.commit()
 
             flash(f"Usuário {nome}, salvo com sucesso!")
 
