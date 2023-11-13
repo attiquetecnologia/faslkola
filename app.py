@@ -9,7 +9,7 @@ def create_app(): # cria uma função para definir o aplicativo
     app = Flask(__name__) # instancia o Flask
     app.secret_key = "abax"
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqldb://root:5e5i_123@localhost:3306/flaskola"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqldb://root:5e5i#123@localhost:3306/flaskola"
     app.config['SQLALCHEMY_TRACK_MPDIFICATIONS'] = False
 
     db.init_app(app)
